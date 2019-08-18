@@ -64,14 +64,14 @@ public class DatabaseSource {
                 Arrays.asList("user_0", "user_1"))
                 .dataSourceRule(dataSourceRule).build();
 
-        TableRule orderTableRules = TableRule.builder("order").actualTables(
+       /* TableRule orderTableRules = TableRule.builder("order").actualTables(
                 Arrays.asList("order_0", "order_1"))
-                .dataSourceRule(dataSourceRule).build();
+                .dataSourceRule(dataSourceRule).build();*/
 
         //分库分表策略
         ShardingRule shardingRule = ShardingRule.builder()
                 .dataSourceRule(dataSourceRule)
-                .tableRules(Arrays.asList(userTableRules,orderTableRules))
+                .tableRules(Arrays.asList(userTableRules))
                 .databaseShardingStrategy(new DatabaseShardingStrategy("id", databaseShardingAlgorithm))
                 .tableShardingStrategy(new TableShardingStrategy("name", DatabaseTableShardingAlgorithm))
                 .build();
@@ -93,12 +93,12 @@ public class DatabaseSource {
     }*/
 
 
-    @Bean(name = "transactionManager")
+    /*@Bean(name = "transactionManager")
     public PlatformTransactionManager transactionManager() throws Exception {
         DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
         transactionManager.setDataSource(dataSource());
         return transactionManager;
-    }
+    }*/
 
     @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactory() throws Exception {
